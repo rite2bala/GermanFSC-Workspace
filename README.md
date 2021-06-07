@@ -1,1 +1,1 @@
-# ipa-workspace
+The main workspace for the German FSC POC 
