@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: ipa
+  name: ipa
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 8080
+  selector:
+    io.kompose.service: ipa
+  type: LoadBalancer
+status:
+  loadBalancer: {}

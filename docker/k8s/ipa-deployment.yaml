@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: ipa
+  name: ipa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: ipa
+  strategy: {}
+  template:
+    labels:
+      io.kompose.service: ipa
+    spec:
+      containers:
+        - image: pharmaledger/ipa:latest
+          imagePullPolicy: ""
+          name: ipa
+          ports:
+            - containerPort: 8080
+          resources: {}
+          volumeMounts:
+            - name: ipa-defaults-volume
+              mountPath: /ipa-workspace/apihub-root/external-config/server.json
+              subPath: server.json
+            - name: ipa-defaults-volume
+              mountPath: /ipa-workspace/apihub-root/external-config/bdns.hosts
+              subPath: bdns.hosts
+            - name: ipa-defaults-volume
+              mountPath: /ipa-workspace/env.json
+              subPath: env.json
+        ports:
+          - containerPort: 8080
+    restartPolicy: Always
+    serviceAccountName: ""
+    volumes:
+      - name: ipa-defaults-volume
+        configMap:
+          name: ipa-defaults
+status: {}
