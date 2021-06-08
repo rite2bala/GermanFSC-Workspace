@@ -86,8 +86,8 @@
             ]
         },
         {
-            "name": "themes/ipa-theme",
-            "src": "https://github.com/ploznlu1/ipa-theme.git",
+            "name": "themes/GermanFSC-theme",
+            "src": "https://github.com/rite2bala/GermanFSC-theme",
             "actions": [
                 {
                     "type": "smartClone",
@@ -133,42 +133,42 @@
             ]
         },
         {
-            "name": "ipa-theme-wallet-build",
+            "name": "GermanFSC-theme-wallet-build",
             "src": "",
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd themes/ipa-theme && npm run build-dossier"
+                    "cmd": "cd themes/GermanFSC-theme && npm run build-dossier"
                 }
             ]
         },
         {
-            "name": "courier-courier-ssapp",
+            "name": "MAH-MAH-ssapp",
             "src": "",
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd courier-ssapp && npm run build"
+                    "cmd": "cd MAH-ssapp && npm run build"
                 },
                 {
                     "type": "copy",
-                    "src": "./courier-ssapp/seed",
-                    "target": "./apihub-root/courier-wallet/apps-patch/courier-ssapp/seed",
+                    "src": "./MAH-ssapp/seed",
+                    "target": "./apihub-root/MAH-wallet/apps-patch/MAH-ssapp/seed",
                     "options": {
                         "overwrite": true
                     }
                 },
                 {
                     "type": "copy",
-                    "src": "./courier-ssapp/seed",
-                    "target": "./apihub-root/courier-wallet/wallet-patch/seed",
+                    "src": "./MAH-ssapp/seed",
+                    "target": "./apihub-root/MAH-wallet/wallet-patch/seed",
                     "options": {
                         "overwrite": true
                     }
                 },
                 {
                     "type": "execute",
-                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/courier-wallet/apps-patch/sponsor-ssapp/readme"
+                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/MAH-wallet/apps-patch/sponsor-ssapp/readme"
                 }
             ]
         },
@@ -195,11 +195,11 @@
             ]
         },
         {
-            "name": "courier-wallet-loader-build",
+            "name": "MAH-wallet-loader-build",
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd apihub-root/courier-wallet/loader && npm run build"
+                    "cmd": "cd apihub-root/MAH-wallet/loader && npm run build"
                 }
             ]
         }
