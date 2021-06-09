@@ -670,7 +670,7 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "echo \"Continue with ipa builds\""
+                    "cmd": "echo \"Continue with German FSC builds\""
                 }
             ]
         }

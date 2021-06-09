@@ -1,1 +1,1 @@
-echo "ipa"
+echo "German FSC"

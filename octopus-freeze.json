@@ -47,8 +47,8 @@
             ]
         },
         {
-            "name": "courier-ssapp",
-            "src": "https://github.com/ploznlu1/courier-ssapp.git",
+            "name": "MAH-ssapp",
+            "src": "https://github.com/rite2bala/MAH-ssapp",
             "actions": [
                 {
                     "type": "smartClone",
@@ -57,12 +57,12 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "cd courier-ssapp && npm install"
+                    "cmd": "cd MAH-ssapp && npm install"
                 }
             ]
         },
         {
-            "name": "apihub-root/courier-wallet/loader",
+            "name": "apihub-root/MAH-wallet/loader",
             "src": "http://github.com/privatesky/web-dossier-loader.git",
             "actions": [
                 {
@@ -73,12 +73,12 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "cd apihub-root/courier-wallet/loader && npm install"
+                    "cmd": "cd apihub-root/MAH-wallet/loader && npm install"
                 },
                 {
                     "type": "copy",
-                    "src": "apihub-root/courier-wallet/loader/loader-config.local.json-template",
-                    "target": "apihub-root/courier-wallet/loader/loader-config.local.json",
+                    "src": "apihub-root/MAH-wallet/loader/loader-config.local.json-template",
+                    "target": "apihub-root/MAH-wallet/loader/loader-config.local.json",
                     "options": {
                         "overwrite": true
                     }
@@ -190,7 +190,7 @@
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd apihub-root/courier-wallet/loader && npm install"
+                    "cmd": "cd apihub-root/MAH-wallet/loader && npm install"
                 }
             ]
         },
@@ -231,7 +231,7 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "echo \"Continue with ipa builds\""
+                    "cmd": "echo \"Continue with FSC builds\""
                 }
             ]
         }
@@ -326,7 +326,7 @@
                 },
                 {
                     "type": "copy",
-                    "src": "apihub-root/courier-wallet",
+                    "src": "apihub-root/MAH-wallet",
                     "target": "mobile/scan-app/android/app/src/main/assets/nodejs-project/apihub-root/app"
                 },
                 {
@@ -381,7 +381,7 @@
                 },
                 {
                     "type": "copy",
-                    "src": "apihub-root/courier-wallet",
+                    "src": "apihub-root/MAH-wallet",
                     "target": "mobile/scan-app/ios/PSKNodeServer/PSKNodeServer/nodejsProject/apihub-root/app"
                 },
                 {
