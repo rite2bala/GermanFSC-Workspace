@@ -27,6 +27,6 @@ dsu-fabric-ssapp
 node_modules
 package-lock.json
 env.json.devel
-mah-ssapp
+MAH-ssapp
 Pharmacy-ssapp
 SHI-ssapp
