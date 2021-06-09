@@ -47,7 +47,7 @@
             ]
         },
         {
-            "name": "MAH-ssapp",
+            "name": "mah-ssapp",
             "src": "https://github.com/rite2bala/MAH-ssapp",
             "actions": [
                 {
@@ -57,12 +57,12 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "cd MAH-ssapp && npm install"
+                    "cmd": "cd mah-ssapp && npm install"
                 }
             ]
         },
         {
-            "name": "apihub-root/MAH-wallet/loader",
+            "name": "apihub-root/mah-wallet/loader",
             "src": "http://github.com/privatesky/web-dossier-loader.git",
             "actions": [
                 {
@@ -73,12 +73,12 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "cd apihub-root/MAH-wallet/loader && npm install"
+                    "cmd": "cd apihub-root/mah-wallet/loader && npm install"
                 },
                 {
                     "type": "copy",
-                    "src": "apihub-root/MAH-wallet/loader/loader-config.local.json-template",
-                    "target": "apihub-root/MAH-wallet/loader/loader-config.local.json",
+                    "src": "apihub-root/mah-wallet/loader/loader-config.local.json-template",
+                    "target": "apihub-root/mah-wallet/loader/loader-config.local.json",
                     "options": {
                         "overwrite": true
                     }
@@ -143,7 +143,7 @@
             ]
         },
         {
-            "name": "MAH-MAH-ssapp",
+            "name": "MAH-ssapp",
             "src": "",
             "actions": [
                 {
@@ -168,7 +168,7 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/MAH-wallet/apps-patch/sponsor-ssapp/readme"
+                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/MAH-wallet/apps-patch/mah-ssapp/readme"
                 }
             ]
         },
@@ -190,7 +190,7 @@
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd apihub-root/MAH-wallet/loader && npm install"
+                    "cmd": "cd apihub-root/mah-wallet/loader && npm install"
                 }
             ]
         },
@@ -231,7 +231,7 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "echo \"Continue with FSC builds\""
+                    "cmd": "echo \"Continue with ipa builds\""
                 }
             ]
         }
@@ -326,7 +326,7 @@
                 },
                 {
                     "type": "copy",
-                    "src": "apihub-root/MAH-wallet",
+                    "src": "apihub-root/mah-wallet",
                     "target": "mobile/scan-app/android/app/src/main/assets/nodejs-project/apihub-root/app"
                 },
                 {
@@ -381,7 +381,7 @@
                 },
                 {
                     "type": "copy",
-                    "src": "apihub-root/MAH-wallet",
+                    "src": "apihub-root/mah-wallet",
                     "target": "mobile/scan-app/ios/PSKNodeServer/PSKNodeServer/nodejsProject/apihub-root/app"
                 },
                 {
