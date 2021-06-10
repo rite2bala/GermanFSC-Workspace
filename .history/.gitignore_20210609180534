@@ -10,7 +10,6 @@ apihub-root/courier-wallet
 apihub-root/dsu-explorer/wallet-patch/seed
 sponsor-ssapp
 clinical-resource-ssapp
-courier-ssapp
 apihub-root/dsu-fabric-wallet/loader
 themes
 dossier-explorer-wallet-prototype
@@ -27,6 +26,6 @@ dsu-fabric-ssapp
 node_modules
 package-lock.json
 env.json.devel
-MAH-ssapp
+mah-ssapp
 Pharmacy-ssapp
 SHI-ssapp
