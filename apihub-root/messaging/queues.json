@@ -1,0 +1,6 @@
+{
+    "queues": [
+        "did:demo:mahIdentity",
+        "did:demo:shiIdentity"
+    ]
+}
