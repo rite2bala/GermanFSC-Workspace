@@ -1,18 +1,19 @@
 const getSharedStorage = require('./lib/SharedDBStorageService.js').getSharedStorage;
 const DSUService = require('./lib/DSUService.js');
-const { Roles, NotificationTypes, Topics, messagesEnum, order, FoldersEnum } = require('./constants');
+const { Roles, NotificationTypes, Topics, messagesEnum, order, FoldersEnum, priceAnnouncement } = require('./constants');
+const priceAnnouncementsEnum = priceAnnouncement.priceAnnouncementStatusesEnum;
 const orderStatusesEnum = order.orderStatusesEnum;
 const NotificationsService = require('./lib/NotificationService.js');
 const eventBusService = require('./lib/EventBusService.js');
 const CommunicationService = require('./lib/CommunicationService.js');
 const moment = require('./lib/moment.min');
 
-class OrdersService extends DSUService {
-  ORDERS_TABLE = 'orders';
-  ORDERS_FOLDER = '/orders';
+class PriceAnnouncementsService extends DSUService {
+  PRICE_ANNOUNCEMENTS_TABLE = "price_announcements";
+  PRICE_ANNOUNCEMENTS_FOLDER = "/price_announcements";
 
   constructor(DSUStorage, communicationService) {
-    super(DSUStorage, '/orders');
+    super(DSUStorage, '/price_announcements');
     if (communicationService) {
       this.communicationService = communicationService;
     }
@@ -21,23 +22,36 @@ class OrdersService extends DSUService {
     this.DSUStorage = DSUStorage;
   }
 
-  async getOrders() {
-    const result = await this.storageService.filter(this.ORDERS_TABLE);
-    // return demoData;
+  async getPriceAnnouncements() {
+    const result = await this.storageService.filter(this.PRICE_ANNOUNCEMENTS_TABLE);
     if (result) {
       return result.filter((x) => !x.deleted);
     } else return [];
   }
 
-  async getOrder(keySSI) {
-    return await this.storageService.getRecord(this.ORDERS_TABLE, keySSI);
+  async getPriceAnnouncement(keySSI) {
+    return await this.storageService.getRecord(this.PRICE_ANNOUNCEMENTS_TABLE, keySSI);
   }
 
-  async getStatuses(orderSSI) {
-    const result = await this.getEntitiesAsync('/' + this.ORDERS_TABLE + '/' + orderSSI + '/status');
+  async getStatuses(priceAnnouncementSSI) {
+    const result = await this.getEntitiesAsync('/' + this.PRICE_ANNOUNCEMENTS_TABLE + '/' + priceAnnouncementSSI + '/status');
     return result[0];
   }
 
+  async updatePriceAnnouncement(data) {
+    const statusDsu = await this.updateEntityAsync(
+      {
+        status: priceAnnouncementsEnum.ReviewedByCMO,
+      },
+      '/statuses'
+    );
+
+    const model = {
+    };
+
+  }
+
+    /*
   async updateOrder(data) {
     const statusDsu = await this.updateEntityAsync(
       {
@@ -98,81 +112,86 @@ class OrdersService extends DSUService {
 
     return { ...order, status: statusDsu.status };
   }
+  */
 
-  async deleteOrder(id) {
-    const selectedOrder = await this.storageService.getRecord(this.ORDERS_TABLE, id);
+  async deletePriceAnnouncement(id) {
+      const selectedPriceAnnouncement = await this.storageService.getRecord(this.PRICE_ANNOUNCEMENTS_TABLE, id);
 
-    const updatedTrial = await this.storageService.updateRecord(this.ORDERS_TABLE, selectedOrder.id, {
-      ...selectedTrial,
-      deleted: true,
-    });
+      const updatedTrial = await this.storageService.updateRecord(
+          this.PRICE_ANNOUNCEMENTS_TABLE, selectedPriceAnnouncement.id, {
+              // TODO: where does this come from?, not clear even in original order code
+              ...selectedTrial, deleted: true,
+          }
+      );
+      return;
+    }
 
-    return;
-  }
-
-  async mountOrder(keySSI, documentsSSI) {
-    const order = await this.mountEntityAsync(keySSI);
-    console.log('ORDER:', JSON.stringify(order, null, 2));
-    const documents = await this.mountEntityAsync(documentsSSI, '/documents');
-    const result = await this.addOrderToDB({ ...order, orderSSI: keySSI, documentsKeySSI: documentsSSI });
-    console.log('RESULT:', JSON.stringify(result, null, 2));
-    eventBusService.emitEventListeners(Topics.RefreshOrders, null);
-    return result;
-  }
-
-  async mountOrderReviewedByCMO(keySSI, documentsSSI) {
+  async mountPriceAnnouncement(keySSI, documentsSSI) {
+      const priceAnnouncement = await this.mountEntityAsync(keySSI);
+      console.log('PRICE ANNOUNCEMENT:', JSON.stringify(priceAnnouncement, null, 2));
+      const documents = await this.mountEntityAsync(documentsSSI, '/documents');
+      const result = await this.addPriceAnnouncementToDB({ ...priceAnnouncement, priceAnnouncementSSI: keySSI, documentsKeySSI: documentsSSI });
+      console.log('RESULT:', JSON.stringify(result, null, 2));
+      // TODO: FIXME: Where does this listener topic need to be defined?
+      eventBusService.emitEventListeners(Topics.RefreshPriceAnnouncement, null);
+      return result;
+    }
+ 
+    // TODO: FIXME: What to change CMO to? Do we need "review" as a phase?
+  async mountPriceAnnouncementReviewedbyCMO(keySSI, documentsSSI) {
     await this.unmountEntityAsync(keySSI);
     await this.mountEntityAsync(keySSI);
-    const order = await this.getEntityAsync(keySSI);
-    console.log('ORDER:', JSON.stringify(order, null, 2));
+    const priceAnnouncement = await this.getEntityAsync(keySSI);
+    console.log('PRICE ANNOUNCEMENT:', JSON.stringify(priceAnnouncement, null, 2));
 
     // const result = await this.addOrderToDB({ ...order, orderSSI: keySSI, cmoDocumentsSSI: documentsSSI });
-    const selectedOrder = await this.storageService.getRecord(this.ORDERS_TABLE, order.orderId);
+    const selectedPriceAnnouncement = await this.storageService.getRecord(this.PRICE_ANNOUNCEMENTS_TABLE, priceAnnouncement.priceAnnouncementId);
 
     if (documentsSSI) {
       const documents = await this.mountEntityAsync(documentsSSI, '/documents');
-      selectedOrder.cmoDocumentsSSI = documentsSSI;
+      selectedPriceAnnouncement.cmoDocumentsSSI = documentsSSI;
     }
-    selectedOrder.status = order.status;
-    selectedOrder.comments = order.comments;
+    selectedPriceAnnouncement.status = priceAnnouncement.status;
+    selectedPriceAnnouncement.comments = priceAnnouncement.comments;
 
-    const updatedOrder = await this.storageService.updateRecord(this.ORDERS_TABLE, order.orderId, selectedOrder);
-    console.log('RESULT:', JSON.stringify(updatedOrder, null, 2));
-    return updatedOrder;
+    const updatedPriceAnnouncement = await this.storageService.updateRecord(this.PRICE_ANNOUNCEMENTS_TABLE, priceAnnouncement.priceAnnouncementId, selectedPriceAnnouncement);
+    console.log('RESULT:', JSON.stringify(updatedPriceAnnouncement, null, 2));
+    return updatedPriceAnnouncement;
   }
 
-  async mountOrderReviewedBySponsor(keySSI) {
+  async mountPriceAnnouncementReviewedBySponsor(keySSI) {
     await this.unmountEntityAsync(keySSI);
     await this.mountEntityAsync(keySSI);
-    const order = await this.getEntityAsync(keySSI);
+    const priceAnnouncement = await this.getEntityAsync(keySSI);
     console.log('ORDER:', JSON.stringify(order, null, 2));
-    const selectedOrder = await this.storageService.getRecord(this.ORDERS_TABLE, order.orderId);
-    const updatedOrder = await this.storageService.updateRecord(this.ORDERS_TABLE, order.orderId, {
-      ...selectedOrder,
-      status: order.status,
-      comments: order.comments,
+    const selectedPriceAnnouncement = await this.storageService.getRecord(this.PRICE_ANNOUNCEMENTS_TABLE, priceAnnouncement.priceAnnouncementId);
+    const updatedPriceAnnouncement = await this.storageService.updateRecord(this.PRICE_ANNOUNCEMENTS_TABLE, priceAnnouncement.priceAnnouncementId, {
+      ...selectedPriceAnnouncement,
+      status: priceAnnouncement.status,
+      comments: priceAnnouncement.comments,
     });
-    console.log('RESULT:', JSON.stringify(updatedOrder, null, 2));
-    return updatedOrder;
-  }
+    console.log('RESULT:', JSON.stringify(updatedPriceAnnouncement, null, 2));
+    return updatedPriceAnnouncement;
+ }
 
-  async addOrderToDB(data, key) {
-    const newRecord = await this.storageService.insertRecord(this.ORDERS_TABLE, key ? key : data.orderId, data);
+  async addPriceAnnouncementToDB(data, key) {
+    const newRecord = await this.storageService.insertRecord(this.PRICE_ANNOUNCEMENTS_TABLE, key ? key : data.priceAnnouncementId, data);
     return newRecord;
   }
 
-  async updateOrderToDB(data, key) {
+  async updatePriceAnnouncementToDB(data, key) {
     console.log('Updating', data);
-    const updatedRecord = await this.storageService.updateRecord(this.ORDERS_TABLE, key ? key : data.orderId, data);
+    const updatedRecord = await this.storageService.updateRecord(this.PRICE_ANNOUNCEMENTS_TABLE, key ? key : data.priceAnnouncementId, data);
     return updatedRecord;
   }
 
-  async finishReview(files, comments, orderKeySSI) {
+  async finishReview(files, comments, priceAnnouncementKeySSI) {
     let documentsKeySSI = false;
     if (files) {
       documentsKeySSI = await this.saveDocuments(files);
     }
 
+      //TODO: FIXME: CMO -> ?
     await this.updateEntityAsync(
       {
         status: orderStatusesEnum.ReviewedByCMO,
@@ -180,6 +199,7 @@ class OrdersService extends DSUService {
       '/statuses'
     );
 
+      //TODO: FIXME: CSC -> ?
     this.communicationService.sendMessage(CommunicationService.identities.CSC.SPONSOR_IDENTITY, {
       operation: messagesEnum.StatusReviewedByCMO,
       data: {
@@ -196,6 +216,7 @@ class OrdersService extends DSUService {
       {
         documents: files.map((x) => ({
           name: x.name,
+          //TODO: FIXME: CMO -> ?
           attached_by: Roles.CMO,
           date: new Date().toISOString(),
         })),
@@ -678,4 +699,4 @@ class OrdersService extends DSUService {
   }
 }
 
-module.exports = OrdersService;
+module.exports = PriceAnnouncementService;
