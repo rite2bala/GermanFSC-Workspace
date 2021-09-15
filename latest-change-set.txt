@@ -51,3 +51,4 @@
     basic scan page
     added login page, DSUManager, deleted uneccessary files
     Updates to the CSC Theme
+    changed files to original theme

@@ -47,8 +47,8 @@
             ]
         },
         {
-            "name": "mah-ssapp",
-            "src": "https://github.com/rite2bala/MAH-ssapp",
+            "name": "shi-ssapp",
+            "src": "https://github.com/rite2bala/SHI-ssapp",
             "actions": [
                 {
                     "type": "smartClone",
@@ -57,7 +57,7 @@
                 },
                 {
                     "type": "execute",
-                    "cmd": "cd mah-ssapp && npm install"
+                    "cmd": "cd shi-ssapp && npm install"
                 }
             ]
         },
@@ -79,6 +79,30 @@
                     "type": "copy",
                     "src": "apihub-root/mah-wallet/loader/loader-config.local.json-template",
                     "target": "apihub-root/mah-wallet/loader/loader-config.local.json",
+                    "options": {
+                        "overwrite": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "apihub-root/shi-wallet/loader",
+            "src": "http://github.com/privatesky/web-dossier-loader.git",
+            "actions": [
+                {
+                    "type": "smartClone",
+                    "target": ".",
+                    "collectLog": false,
+                    "commit": "6422446d3b605566362ed471b5d4a43c4dd8e252"
+                },
+                {
+                    "type": "execute",
+                    "cmd": "cd apihub-root/shi-wallet/loader && npm install"
+                },
+                {
+                    "type": "copy",
+                    "src": "apihub-root/shi-wallet/loader/loader-config.local.json-template",
+                    "target": "apihub-root/shi-wallet/loader/loader-config.local.json",
                     "options": {
                         "overwrite": true
                     }
@@ -173,6 +197,36 @@
             ]
         },
         {
+          "name": "SHI-ssapp",
+          "src": "",
+          "actions": [
+            {
+              "type": "execute",
+              "cmd": "cd SHI-ssapp && npm run build"
+            },
+            {
+              "type": "copy",
+              "src": "./SHI-ssapp/seed",
+              "target": "./apihub-root/SHI-wallet/apps-patch/SHI-ssapp/seed",
+              "options": {
+                "overwrite": true
+              }
+            },
+            {
+              "type": "copy",
+              "src": "./SHI-ssapp/seed",
+              "target": "./apihub-root/SHI-wallet/wallet-patch/seed",
+              "options": {
+                "overwrite": true
+              }
+            },
+            {
+              "type": "execute",
+              "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/MAH-wallet/apps-patch/shi-ssapp/readme"
+            }
+          ]
+        },
+        {
             "name": "trust-loader-config",
             "actions": [
                 {
@@ -202,6 +256,24 @@
                     "cmd": "cd apihub-root/MAH-wallet/loader && npm run build"
                 }
             ]
+        },
+        {
+          "name": "copy-bundles",
+          "actions": [
+            {
+              "type": "execute",
+              "cmd": "cd apihub-root/shi-wallet/loader && npm install"
+            }
+          ]
+        },
+        {
+          "name": "SHI-wallet-loader-build",
+          "actions": [
+            {
+              "type": "execute",
+              "cmd": "cd apihub-root/SHI-wallet/loader && npm run build"
+            }
+          ]
         }
     ],
     "install-mobile": [
@@ -330,6 +402,11 @@
                     "target": "mobile/scan-app/android/app/src/main/assets/nodejs-project/apihub-root/app"
                 },
                 {
+                  "type": "copy",
+                  "src": "apihub-root/shi-wallet",
+                  "target": "mobile/scan-app/android/app/src/main/assets/nodejs-project/apihub-root/app"
+                },
+                {
                     "type": "remove",
                     "target": "mobile/scan-app/android/app/src/main/assets/nodejs-project/apihub-root/app/loader/node_modules"
                 },
@@ -383,6 +460,11 @@
                     "type": "copy",
                     "src": "apihub-root/mah-wallet",
                     "target": "mobile/scan-app/ios/PSKNodeServer/PSKNodeServer/nodejsProject/apihub-root/app"
+                },
+                {
+                  "type": "copy",
+                  "src": "apihub-root/shi-wallet",
+                  "target": "mobile/scan-app/ios/PSKNodeServer/PSKNodeServer/nodejsProject/apihub-root/app"
                 },
                 {
                     "type": "remove",
