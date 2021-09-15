@@ -52,3 +52,7 @@
     added login page, DSUManager, deleted uneccessary files
     Updates to the CSC Theme
     changed files to original theme
+    first Commit
+    changed files to original theme
+    Testing Title Change on Login Page
+    changed files to original theme
