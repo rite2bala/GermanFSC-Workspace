@@ -48,7 +48,7 @@
         },
         {
             "name": "mah-ssapp",
-            "src": "https://github.com/rite2bala/MAH-ssapp",
+            "src": "https://github.com/rite2bala/mah-ssapp",
             "actions": [
                 {
                     "type": "smartClone",
@@ -143,32 +143,32 @@
             ]
         },
         {
-            "name": "MAH-ssapp",
+            "name": "mah-ssapp",
             "src": "",
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd MAH-ssapp && npm run build"
+                    "cmd": "cd mah-ssapp && npm run build"
                 },
                 {
                     "type": "copy",
-                    "src": "./MAH-ssapp/seed",
-                    "target": "./apihub-root/MAH-wallet/apps-patch/MAH-ssapp/seed",
+                    "src": "./mah-ssapp/seed",
+                    "target": "./apihub-root/mah-wallet/apps-patch/mah-ssapp/seed",
                     "options": {
                         "overwrite": true
                     }
                 },
                 {
                     "type": "copy",
-                    "src": "./MAH-ssapp/seed",
-                    "target": "./apihub-root/MAH-wallet/wallet-patch/seed",
+                    "src": "./mah-ssapp/seed",
+                    "target": "./apihub-root/mah-wallet/wallet-patch/seed",
                     "options": {
                         "overwrite": true
                     }
                 },
                 {
                     "type": "execute",
-                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/MAH-wallet/apps-patch/mah-ssapp/readme"
+                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/mah-wallet/apps-patch/mah-ssapp/readme"
                 }
             ]
         },
@@ -195,11 +195,11 @@
             ]
         },
         {
-            "name": "MAH-wallet-loader-build",
+            "name": "mah-wallet-loader-build",
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd apihub-root/MAH-wallet/loader && npm run build"
+                    "cmd": "cd apihub-root/mah-wallet/loader && npm run build"
                 }
             ]
         }
