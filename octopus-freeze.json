@@ -286,7 +286,7 @@
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd apihub-root/shi-wallet/loader && npm run build"
+                    "cmd": "cd apihub-root/SHI-wallet/loader && npm run build"
                 }
             ]
         },
