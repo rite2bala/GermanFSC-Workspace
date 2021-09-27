@@ -51,3 +51,11 @@
     basic scan page
     added login page, DSUManager, deleted uneccessary files
     Updates to the CSC Theme
+    Change to priceannouncement
+    changed files to original theme
+    Change to priceannouncement
+    Adding changing to build
+    changed files to original theme
+    Push the working version
+    Adding changing to build
+    changed files to original theme

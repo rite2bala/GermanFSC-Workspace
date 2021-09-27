@@ -101,30 +101,6 @@
             ]
         },
         {
-            "name": "apihub-root/shi-wallet/loader",
-            "src": "http://github.com/privatesky/web-dossier-loader.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false,
-                    "commit": "6422446d3b605566362ed471b5d4a43c4dd8e252"
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd apihub-root/shi-wallet/loader && npm install"
-                },
-                {
-                    "type": "copy",
-                    "src": "apihub-root/shi-wallet/loader/loader-config.local.json-template",
-                    "target": "apihub-root/shi-wallet/loader/loader-config.local.json",
-                    "options": {
-                        "overwrite": true
-                    }
-                }
-            ]
-        },
-        {
             "name": "themes/GermanFSC-theme",
             "src": "https://github.com/rite2bala/GermanFSC-theme",
             "actions": [
