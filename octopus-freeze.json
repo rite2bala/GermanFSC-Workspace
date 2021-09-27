@@ -47,21 +47,6 @@
             ]
         },
         {
-            "name": "mah-ssapp",
-            "src": "https://github.com/rite2bala/MAH-ssapp",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd mah-ssapp && npm install"
-                }
-            ]
-        },
-        {
             "name": "apihub-root/mah-wallet/loader",
             "src": "http://github.com/privatesky/web-dossier-loader.git",
             "actions": [
@@ -82,6 +67,21 @@
                     "options": {
                         "overwrite": true
                     }
+                }
+            ]
+        },
+        {
+            "name": "mah-ssapp",
+            "src": "https://github.com/rite2bala/MAH-ssapp",
+            "actions": [
+                {
+                    "type": "smartClone",
+                    "target": ".",
+                    "collectLog": false
+                },
+                {
+                    "type": "execute",
+                    "cmd": "cd mah-ssapp && npm install"
                 }
             ]
         },
@@ -117,45 +117,6 @@
                 {
                     "type": "execute",
                     "cmd": "cd ethereum-anchoring/SmartContract && npm install"
-                }
-            ]
-        },
-        {
-            "name": "shi-ssapp",
-            "src": "https://github.com/rite2bala/SHI-SSapp.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd shi-ssapp && npm install"
-                }
-            ]
-        },
-        {
-            "name": "apihub-root/shi-wallet/loader",
-            "src": "http://github.com/privatesky/web-dossier-loader.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false,
-                    "commit": "6422446d3b605566362ed471b5d4a43c4dd8e252"
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd apihub-root/shi-wallet/loader && npm install"
-                },
-                {
-                    "type": "copy",
-                    "src": "apihub-root/shi-wallet/loader/loader-config.local.json-template",
-                    "target": "apihub-root/shi-wallet/loader/loader-config.local.json",
-                    "options": {
-                        "overwrite": true
-                    }
                 }
             ]
         }
@@ -210,36 +171,6 @@
                     "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/MAH-wallet/apps-patch/mah-ssapp/readme"
                 }
             ]
-        },
-        {
-          "name": "shi-ssapp",
-          "src": "",
-          "actions": [
-            {
-              "type": "execute",
-              "cmd": "cd shi-ssapp && npm run build"
-            },
-            {
-              "type": "copy",
-              "src": "./SHI-ssapp/seed",
-              "target": "./apihub-root/shi-wallet/apps-patch/shi-ssapp/seed",
-              "options": {
-                "overwrite": true
-              }
-            },
-            {
-              "type": "copy",
-              "src": "./shi-ssapp/seed",
-              "target": "./apihub-root/shi-wallet/wallet-patch/seed",
-              "options": {
-                "overwrite": true
-              }
-            },
-            {
-              "type": "execute",
-              "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/shi-wallet/apps-patch/mah-ssapp/readme"
-            }
-          ]
         },
         {
             "name": "trust-loader-config",

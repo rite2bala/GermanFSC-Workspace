@@ -60,83 +60,6 @@
             ]
         },
         {
-            "name": "leaflet-ssapp",
-            "src": "https://github.com/PharmaLedger-IMI/leaflet-ssapp.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd leaflet-ssapp && npm install"
-                }
-            ]
-        },
-        {
-            "name": "sponsor-ssapp",
-            "src": "https://github.com/PharmaLedger-IMI/sponsor-ssapp.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd sponsor-ssapp && npm install"
-                }
-            ]
-        },
-        {
-            "name": "apihub-root/sponsor-wallet/loader",
-            "src": "http://github.com/privatesky/web-dossier-loader.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false,
-                    "commit": "6422446d3b605566362ed471b5d4a43c4dd8e252"
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd apihub-root/sponsor-wallet/loader && npm install"
-                },
-                {
-                    "type": "copy",
-                    "src": "apihub-root/sponsor-wallet/loader/loader-config.local.json-template",
-                    "target": "apihub-root/sponsor-wallet/loader/loader-config.local.json",
-                    "options": {
-                        "overwrite": true
-                    }
-                }
-            ]
-        },
-        {
-            "name": "apihub-root/leaflet-wallet/loader",
-            "src": "http://github.com/privatesky/web-dossier-loader.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd apihub-root/leaflet-wallet/loader && npm install"
-                },
-                {
-                    "type": "copy",
-                    "src": "apihub-root/leaflet-wallet/loader/loader-config.local.json-template",
-                    "target": "apihub-root/leaflet-wallet/loader/loader-config.local.json",
-                    "options": {
-                        "overwrite": true
-                    }
-                }
-            ]
-        },
-        {
             "name": "apihub-root/dsu-fabric-wallet/loader",
             "src": "http://github.com/privatesky/web-dossier-loader.git",
             "actions": [
@@ -261,36 +184,6 @@
                     "options": {
                         "overwrite": true
                     }
-                }
-            ]
-        },
-        {
-            "name": "gtin-resolver",
-            "src": "https://github.com/PharmaLedger-IMI/gtin-resolver.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd gtin-resolver && npm install"
-                }
-            ]
-        },
-        {
-            "name": "gtin-dsu-wizard",
-            "src": "https://github.com/PharmaLedger-IMI/gtin-dsu-wizard.git",
-            "actions": [
-                {
-                    "type": "smartClone",
-                    "target": ".",
-                    "collectLog": false
-                },
-                {
-                    "type": "execute",
-                    "cmd": "cd gtin-dsu-wizard && npm install"
                 }
             ]
         },
@@ -526,36 +419,6 @@
                 {
                     "type": "execute",
                     "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/dsu-explorer/apps-patch/dossier-explorer-ssapp/readme"
-                }
-            ]
-        },
-        {
-            "name": "leaflet-wallet_bind_to_leaflet-ssapp",
-            "src": "",
-            "actions": [
-                {
-                    "type": "execute",
-                    "cmd": "cd leaflet-ssapp && npm run build"
-                },
-                {
-                    "type": "copy",
-                    "src": "./leaflet-ssapp/seed",
-                    "target": "./apihub-root/leaflet-wallet/apps-patch/leaflet-ssapp/seed",
-                    "options": {
-                        "overwrite": true
-                    }
-                },
-                {
-                    "type": "copy",
-                    "src": "./leaflet-ssapp/seed",
-                    "target": "./apihub-root/leaflet-wallet/wallet-patch/seed",
-                    "options": {
-                        "overwrite": true
-                    }
-                },
-                {
-                    "type": "execute",
-                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/leaflet-wallet/apps-patch/leaflet-ssapp/readme"
                 }
             ]
         },
