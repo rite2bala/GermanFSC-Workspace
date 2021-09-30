@@ -212,7 +212,7 @@
             ]
         },
         {
-            "name": "SHI-ssapp",
+            "name": "shi-ssapp",
             "src": "",
             "actions": [
                 {
@@ -296,19 +296,19 @@
             "actions": [
                 {
                     "type": "execute",
-                    "cmd": "cd SHI-ssapp && npm run build"
+                    "cmd": "cd shi-ssapp && npm run build"
                 },
                 {
                     "type": "copy",
-                    "src": "./SHI-ssapp/seed",
-                    "target": "./apihub-root/shi-wallet/apps-patch/SHI-ssapp/seed",
+                    "src": "./shi-ssapp/seed",
+                    "target": "./apihub-root/shi-wallet/apps-patch/shi-ssapp/seed",
                     "options": {
                         "overwrite": true
                     }
                 },
                 {
                     "type": "execute",
-                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/shi-wallet/apps-patch/SHI-ssapp/readme"
+                    "cmd": "echo Use this folder template in order to customize the application instance by adding configuration, pages etc. > ./apihub-root/shi-wallet/apps-patch/shi-ssapp/readme"
                 }
             ]
         }

@@ -71,3 +71,6 @@
     first Commit
     Change to priceannouncement
     Adding changing to build
+    changes to ssapp- changed pages
+    Updating Bin Build
+    changed files to original theme
