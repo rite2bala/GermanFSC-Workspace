@@ -1,5 +1,5 @@
 export default  {
-  "appName": "MAH Wallet",
+  "appName": "SHI Wallet",
   "vault": "browser",
   "agent": "browser",
   "system":   "any",
