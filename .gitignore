@@ -5,8 +5,8 @@ privatesky
 menu-wallet-prototype
 leaflet-ssapp
 apihub-root/leaflet-wallet/loader
-apihub-root/mah-wallet
-apihub-root/shi-wallet
+# apihub-root/mah-wallet
+# apihub-root/shi-wallet
 apihub-root/dsu-explorer/wallet-patch/seed
 sponsor-ssapp
 clinical-resource-ssapp
